@@ -3,19 +3,19 @@ import React from "react";
 const Testimonials = () => {
   const testimonials = [
     {
-      name: "John Doe",
+      name: "Abugre Abayeta",
       role: "Teacher",
       message:
         "EduBridge has helped me stay updated on every student’s progress with ease.",
     },
     {
-      name: "Jane Smith",
+      name: "Berikisu Ibrahim",
       role: "Parent",
       message:
         "I can now track my child’s learning journey seamlessly. It’s amazing!",
     },
     {
-      name: "Emma Johnson",
+      name: "Adwoa Kumah",
       role: "Student",
       message: "EduBridge motivates me to achieve more and reach my goals.",
     },
