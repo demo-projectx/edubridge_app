@@ -1,4 +1,6 @@
-import React from "react";
+// import pic from "../images/Award.png";
+// import pic1 from "../images/images";
+// import pic2 from "../images/gold";
 
 const Awards = () => {
   const awardsData = [
@@ -6,19 +8,21 @@ const Awards = () => {
       title: "Best Student Performance Tracking Platform",
       description:
         "Awarded for outstanding contributions in improving student monitoring and engagement.",
-      image: "https://via.placeholder.com/150", // Replace with your image link
+      image:
+        "https://www.dimolanka.com/wp-content/uploads/2023/10/CMA-Excellence-in-Integrated-Reports-Awards-Gold-Winner.jpg", // Replace with your image link
     },
     {
       title: "Excellence in Educational Innovation",
       description:
         "Recognized for innovative approaches to bridging the communication gap between parents and teachers.",
-      image: "https://via.placeholder.com/150",
+      image:
+        "https://www.shutterstock.com/image-vector/gold-podium-star-vector-illustration-600nw-2473961929.jpg",
     },
     {
       title: "Most Impactful EdTech Solution 2024",
       description:
         "Honored for our contributions to educational technology and youth empowerment.",
-      image: "https://via.placeholder.com/150",
+      image: "https://www.aoa.org/AOA/Images/Awards/Award_Star.jpg",
     },
     // Add more awards as needed
   ];
