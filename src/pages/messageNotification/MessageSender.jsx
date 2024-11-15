@@ -1,45 +1,72 @@
 import React, { useState } from "react";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const MessageSender = ({ onSendMessage }) => {
+const MessageSender = () => {
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState("");
+  const [parent, setParent] = useState("");
 
-  const handleMessageChange = (e) => {
-    setMessage(e.target.value);
-  };
-
-  const handleSendMessage = () => {
-    if (message.trim() === "") {
-      setStatus("Please enter a message.");
+  const sendMessage = () => {
+    if (parent.trim() === "" || message.trim() === "") {
+      toast.error("Both parent name and message are required!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       return;
     }
 
-    onSendMessage({ content: message, timestamp: Date.now() });
-    setMessage(""); // Clear the message input
-    setStatus("Message sent successfully!");
+    // Simulate message sending
+    const isMessageSent = true; // Change to false to test error
 
-    // Clear the status message after a few seconds
-    setTimeout(() => setStatus(""), 3000);
+    if (isMessageSent) {
+      toast.success(`Message sent to ${parent} successfully!`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setMessage(""); // Clear message field
+      setParent(""); // Clear parent field
+    } else {
+      toast.error("Failed to send message. Please try again.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   };
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md max-w-lg mx-auto">
-      <h3 className="text-lg font-bold mb-4">Send a Message to Parent</h3>
-      <textarea
-        className="w-full p-2 border rounded-md mb-4"
-        placeholder="Write your message here..."
+    <Box>
+      <ToastContainer />
+      <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
+        Send a Message
+      </Typography>
+      <TextField
+        label="Parent Name"
+        variant="outlined"
+        fullWidth
+        value={parent}
+        onChange={(e) => setParent(e.target.value)}
+        sx={{ mb: 2 }}
+      />
+      <TextField
+        label="Your Message"
+        variant="outlined"
+        fullWidth
+        multiline
+        rows={4}
         value={message}
-        onChange={handleMessageChange}
-        rows="4"
-      ></textarea>
-      <button
-        className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
-        onClick={handleSendMessage}
+        onChange={(e) => setMessage(e.target.value)}
+        sx={{ mb: 2 }}
+      />
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={sendMessage}
+        sx={{
+          backgroundColor: "green",
+          "&:hover": { backgroundColor: "darkgreen" },
+        }}
       >
         Send Message
-      </button>
-      {status && <p className="mt-4 text-green-600 font-semibold">{status}</p>}
-    </div>
+      </Button>
+    </Box>
   );
 };
 

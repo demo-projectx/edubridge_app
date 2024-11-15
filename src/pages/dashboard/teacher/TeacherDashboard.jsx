@@ -1,15 +1,13 @@
 import React from "react";
-import TeacherNotificationsList from "../../messageNotification/TeacherNotificationList"; // Import teacher-specific notifications component
-import MessageSender from "../../messageNotification/MessageSender"; // Allows the teacher to send messages to parents
-import PendingTasks from "./PendingTasks";
-import StudentInsights from "./StudentInsights";
-import Notifications from "./Notifications";
-import ResourceCenter1 from "./ResourceCenter";
+import TeacherNotificationsList from "../../messageNotification/TeacherNotificationList";
+import MessageSender from "../../messageNotification/MessageSender";
+import { Box, Typography, Card, CardContent, Grid } from "@mui/material";
+import { Message, NotificationsActive } from "@mui/icons-material";
 
 // Sample data for teacher notifications
 const teacherNotifications = [
   {
-    message: "Student John Doe missed class",
+    message: "Student Talata missed class",
     timestamp: "2024-10-28 10:30 AM",
     type: "studentAlert",
   },
@@ -27,30 +25,100 @@ const teacherNotifications = [
 
 const TeacherDashboard = () => {
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <h2 className="text-3xl font-bold text-gray-800 mb-4">
+    <Box sx={{ backgroundColor: "white", minHeight: "100vh", p: 4 }}>
+      {/* Header */}
+      <Typography
+        variant="h4"
+        sx={{
+          fontWeight: "bold",
+          color: "green",
+          mb: 2,
+          textAlign: "center",
+        }}
+      >
         Teacher Dashboard
-      </h2>
-      <p className="text-lg text-gray-600 mb-8">
-        View student insights, pending tasks, and notifications.
-      </p>
+      </Typography>
 
-      {/* Notifications Section */}
-      <div className="my-6 p-6 bg-white shadow-md rounded-lg">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-          Notifications
-        </h3>
-        <TeacherNotificationsList notifications={teacherNotifications} />
-      </div>
+      <Grid container spacing={4}>
+        {/* Notifications Section */}
+        <Grid item xs={12} md={6}>
+          <Card
+            sx={{
+              borderRadius: 4,
+              boxShadow: "0px 4px 10px rgba(0, 128, 0, 0.2)",
+              transition: "transform 0.3s ease-in-out",
+              "&:hover": {
+                transform: "scale(1.05)",
+                boxShadow: "0px 6px 15px rgba(0, 128, 0, 0.3)",
+              },
+              p: 3,
+              background: "linear-gradient(145deg, #f0f9f1, #e6f7e7)",
+            }}
+          >
+            <CardContent>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  mb: 3,
+                  borderBottom: "2px solid green",
+                  pb: 1,
+                }}
+              >
+                <NotificationsActive
+                  sx={{ fontSize: 45, color: "green", mr: 2 }}
+                />
+                <Typography
+                  variant="h5"
+                  sx={{ fontWeight: "bold", color: "green" }}
+                >
+                  Notifications
+                </Typography>
+              </Box>
+              <TeacherNotificationsList notifications={teacherNotifications} />
+            </CardContent>
+          </Card>
+        </Grid>
 
-      {/* Messaging Section */}
-      <div className="my-6 p-6 bg-white shadow-md rounded-lg">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-          Message Parents
-        </h3>
-        <MessageSender /> {/* Allows the teacher to send messages to parents */}
-      </div>
-    </div>
+        {/* Message Parents Section */}
+        <Grid item xs={12} md={6}>
+          <Card
+            sx={{
+              borderRadius: 4,
+              boxShadow: "0px 4px 10px rgba(0, 128, 0, 0.2)",
+              transition: "transform 0.3s ease-in-out",
+              "&:hover": {
+                transform: "scale(1.05)",
+                boxShadow: "0px 6px 15px rgba(0, 128, 0, 0.3)",
+              },
+              p: 3,
+              background: "linear-gradient(145deg, #f9f7f0, #f7f3e6)",
+            }}
+          >
+            <CardContent>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  mb: 3,
+                  borderBottom: "2px solid green",
+                  pb: 1,
+                }}
+              >
+                <Message sx={{ fontSize: 45, color: "green", mr: 2 }} />
+                <Typography
+                  variant="h5"
+                  sx={{ fontWeight: "bold", color: "green" }}
+                >
+                  Message Parents
+                </Typography>
+              </Box>
+              <MessageSender />
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 

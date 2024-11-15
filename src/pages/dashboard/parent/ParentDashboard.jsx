@@ -1,12 +1,13 @@
 import React from "react";
-import NotificationsList from "../../messageNotification/NotificationsList"; // Parent-specific notifications component
-import MessageViewer from "../../messageNotification/MessageViewer"; // Component for viewing messages from teachers
+import NotificationsList from "../../messageNotification/NotificationsList";
+import MessageViewer from "../../messageNotification/MessageViewer";
 import AttendanceAlerts from "./AttendanceAllerts";
 import BehavioralIssues from "./BehavorialIssue";
 import ChildProgress from "./ChildProgress";
 import Messages from "./Messages";
+import { Box, Typography, Card, CardContent, Grid } from "@mui/material";
+import { NotificationsActive, Email } from "@mui/icons-material";
 
-// Sample data for parent notifications
 const notificationsList = [
   {
     message: "Your child, Felicia, missed a class on 10/27",
@@ -27,33 +28,73 @@ const notificationsList = [
 
 const ParentDashboard = () => {
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <h2 className="text-3xl font-bold text-gray-800 mb-4">
+    <Box sx={{ backgroundColor: "white", minHeight: "100vh", p: 4 }}>
+      {/* Header */}
+      <Typography
+        variant="h4"
+        sx={{ fontWeight: "bold", color: "green", mb: 2 }}
+      >
         Parent Dashboard
-      </h2>
-      <p className="text-lg text-gray-600 mb-8">
+      </Typography>
+      <Typography variant="subtitle1" sx={{ color: "gray", mb: 4 }}>
         Track your child’s academic performance, behavioral issues, and
         attendance.
-      </p>
+      </Typography>
 
-      {/* Notifications Section */}
-      <div className="my-6 p-6 bg-white shadow-md rounded-lg">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-          Notifications
-        </h3>
-        <NotificationsList notifications={notificationsList} />{" "}
-        {/* Displays parent-specific notifications */}
-      </div>
+      <Grid container spacing={4}>
+        {/* Notifications Section */}
+        <Grid item xs={12} md={6}>
+          <Card
+            sx={{
+              borderRadius: 3,
+              boxShadow: 3,
+              "&:hover": { boxShadow: 6 },
+              p: 2,
+            }}
+          >
+            <CardContent>
+              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                <NotificationsActive
+                  sx={{ fontSize: 40, color: "green", mr: 2 }}
+                />
+                <Typography
+                  variant="h5"
+                  sx={{ fontWeight: "bold", color: "green" }}
+                >
+                  Notifications
+                </Typography>
+              </Box>
+              <NotificationsList notifications={notificationsList} />
+            </CardContent>
+          </Card>
+        </Grid>
 
-      {/* Messaging Section */}
-      <div className="my-6 p-6 bg-white shadow-md rounded-lg">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-          Messages from Teachers
-        </h3>
-        <MessageViewer />{" "}
-        {/* Allows the parent to view messages sent by teachers */}
-      </div>
-    </div>
+        {/* Messages Section */}
+        <Grid item xs={12} md={6}>
+          <Card
+            sx={{
+              borderRadius: 3,
+              boxShadow: 3,
+              "&:hover": { boxShadow: 6 },
+              p: 2,
+            }}
+          >
+            <CardContent>
+              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                <Email sx={{ fontSize: 40, color: "green", mr: 2 }} />
+                <Typography
+                  variant="h5"
+                  sx={{ fontWeight: "bold", color: "green" }}
+                >
+                  Messages from Teachers
+                </Typography>
+              </Box>
+              <MessageViewer />
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 
