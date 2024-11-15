@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-black py-8 text-white">
       <div className="container mx-auto text-center">
-        <p className="mb-4">EduBridge © 2024. All Rights Reserved.</p>
+        <p className="mb-4">LearnLink © 2024. All Rights Reserved.</p>
         <div className="flex justify-center space-x-4">
           <a href="#features">Features</a>
           <a href="#how-it-works">How It Works</a>

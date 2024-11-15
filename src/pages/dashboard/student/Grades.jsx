@@ -14,7 +14,15 @@ const Grades = () => {
           <p className="text-green-800">A</p>
         </div>
         <div className="p-4 bg-green-200 rounded-lg">
-          <p className="font-bold text-lg">Science</p>
+          <p className="font-bold text-lg">Social studies</p>
+          <p className="text-green-800">A</p>
+        </div>
+        <div className="p-4 bg-green-200 rounded-lg">
+          <p className="font-bold text-lg">Physical science</p>
+          <p className="text-green-800">A</p>
+        </div>
+        <div className="p-4 bg-green-200 rounded-lg">
+          <p className="font-bold text-lg">English</p>
           <p className="text-green-800">B+</p>
         </div>
       </div>
