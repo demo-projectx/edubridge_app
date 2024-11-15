@@ -37,7 +37,7 @@ const Sidebar = () => {
     <div className="flex">
       {/* Sidebar */}
       <div
-        className={`bg-green-600 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform ${
+        className={`bg-green-600 fixed top-0 left-0 h-screen w-64 p-4 hidden md:block text-white space-y-6 py-7 px-2 transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:relative md:translate-x-0 transition duration-200 ease-in-out`}
       >

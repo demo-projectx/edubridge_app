@@ -56,19 +56,12 @@ function App() {
 
     {
       path: "/userprofile",
-      element: (
-          <UserProfile />
-
-      ),
+      element: <UserProfile />,
     },
 
     {
       path: "/dashboard",
-      element: (
-       
-          <DashboardLayout />
-   
-      ),
+      element: <DashboardLayout />,
       children: [
         {
           index: true,
@@ -80,11 +73,7 @@ function App() {
     //Parent----------------
     {
       path: "/dashboard/parent",
-      element: (
-      
-          <DashboardLayout />
-      
-      ),
+      element: <DashboardLayout />,
       children: [
         {
           index: true,
@@ -115,9 +104,7 @@ function App() {
     //teacher----------------
     {
       path: "/dashboard/teacher",
-      element: (
-          <DashboardLayout />
-      ),
+      element: <DashboardLayout />,
       children: [
         {
           index: true,
@@ -144,10 +131,7 @@ function App() {
     //student----------------
     {
       path: "/dashboard/student",
-      element: (
-      
-          <DashboardLayout />
-      ),
+      element: <DashboardLayout />,
       children: [
         {
           index: true,

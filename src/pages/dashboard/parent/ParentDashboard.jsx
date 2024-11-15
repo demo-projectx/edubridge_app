@@ -9,12 +9,12 @@ import Messages from "./Messages";
 // Sample data for parent notifications
 const notificationsList = [
   {
-    message: "Your child, Jane Doe, missed a class on 10/27",
+    message: "Your child, Felicia, missed a class on 10/27",
     timestamp: "2024-10-27 11:00 AM",
     type: "attendanceAlert",
   },
   {
-    message: "Jane received a commendation for excellent performance in Math",
+    message: "Ama received a commendation for excellent performance in Math",
     timestamp: "2024-10-26 9:30 AM",
     type: "achievement",
   },
