@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navbar from "../../../components/Navbar";
 
 const HeroSection = () => {
@@ -12,9 +13,12 @@ const HeroSection = () => {
           student success and holistic growth.
         </p>
         <div className="mt-8 flex space-x-4">
-          <button className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700">
+          <Link
+            to="/"
+            className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700"
+          >
             Get Started
-          </button>
+          </Link>
           <button className="border border-green-600 text-green-600 px-6 py-3 rounded hover:bg-green-100">
             Learn More
           </button>

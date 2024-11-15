@@ -1,18 +1,19 @@
 import React from "react";
 import ParentDashboard from "./parent/ParentDashboard";
-import TeacherDashboard from "./parent/TeacherDashboard";
+import TeacherDashboard from "./teacher/TeacherDashboard";
 import StudentDashboard from "./student/StudentDashboard";
 import { useUser } from "../../components/userContext";
 
 const Dashboard = () => {
-  const { userRole } = useUser();
+  // const { userRole } = useUser();
+  const { user } = useUser();
 
   return (
     <div className="p-6">
       {/* Conditionally render based on user role */}
-      {userRole === "parent" && <ParentDashboard />}
-      {userRole === "teacher" && <TeacherDashboard />}
-      {userRole === "student" && <StudentDashboard />}
+      {user?.role === "Parent" && <ParentDashboard />}
+      {user?.role === "Teacher" && <TeacherDashboard />}
+      {user?.role === "Student" && <StudentDashboard />}
     </div>
   );
 };

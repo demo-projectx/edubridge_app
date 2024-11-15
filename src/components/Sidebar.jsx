@@ -9,15 +9,28 @@ import {
   FaBars,
 } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
-import { Link, Outlet } from "react-router-dom";
-import { useUser } from "./UserContext";
+import { GrResources } from "react-icons/gr";
+import { Link, useNavigate } from "react-router-dom"; // Correct import
+import { useUser } from "./userContext";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { userRole } = useUser(); // Fetch user role from context
+  const { user, setUser } = useUser(); // Fetch user role from context
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleSignOut = () => {
+    // Clear user from state
+    setUser(null);
+
+    // Clear user from local storage
+    localStorage.removeItem("user");
+
+    // Navigate user to home
+    navigate("/"); // Correct way to navigate
   };
 
   return (
@@ -29,7 +42,7 @@ const Sidebar = () => {
         } md:relative md:translate-x-0 transition duration-200 ease-in-out`}
       >
         <div className="flex items-center justify-between px-4">
-          <h2 className="text-2xl font-bold">EduBridge</h2>
+          <h2 className="text-2xl font-bold">LearnLink</h2>
           <button
             onClick={toggleSidebar}
             className="md:hidden focus:outline-none"
@@ -37,7 +50,6 @@ const Sidebar = () => {
             <FaBars size={24} />
           </button>
         </div>
-
         {/* Navigation Links */}
         <nav className="mt-10">
           <Link
@@ -47,7 +59,7 @@ const Sidebar = () => {
             <FaHome className="mr-3" /> Dashboard
           </Link>
 
-          {userRole === "parent" && (
+          {user.role === "Parent" && (
             <>
               <Link
                 to="/dashboard/parent/child-progress"
@@ -67,70 +79,87 @@ const Sidebar = () => {
               >
                 <FaAward className="mr-3" /> Attendance Alerts
               </Link>
+              <Link
+                to="/dashboard/parent/resourcecentre"
+                className="flex items-center py-2 px-4 rounded hover:bg-green-500"
+              >
+                <GrResources className="mr-3" /> Resource Center
+              </Link>
             </>
           )}
 
-          {userRole === "teacher" && (
+          {user.role === "Teacher" && (
             <>
               <Link
-                to="/teacher/student-insights"
+                to="/dashboard/teacher/student-insights"
                 className="flex items-center py-2 px-4 rounded hover:bg-green-500"
               >
                 <FaUserGraduate className="mr-3" /> Student Insights
               </Link>
               <Link
-                to="/teacher/pending-tasks"
+                to="/dashboard/teacher/pending-tasks"
                 className="flex items-center py-2 px-4 rounded hover:bg-green-500"
               >
                 <FaChalkboardTeacher className="mr-3" /> Pending Tasks
               </Link>
               <Link
-                to="/teacher/notifications"
+                to="/dashboard/teacher/notifications"
                 className="flex items-center py-2 px-4 rounded hover:bg-green-500"
               >
                 <FaBell className="mr-3" /> Notifications
               </Link>
+              <Link
+                to="/dashboard/teacher/resource-center"
+                className="flex items-center py-2 px-4 rounded hover:bg-green-500"
+              >
+                <GrResources className="mr-3" /> Resource Center
+              </Link>
             </>
           )}
 
-          {userRole === "student" && (
+          {user?.role === "Student" && (
             <>
               <Link
-                to="/studentprofile"
+                to="/dashboard/student/studentprofile"
                 className="flex items-center py-2 px-4 rounded hover:bg-green-500"
               >
                 <CgProfile className="mr-3" /> Student Profile
               </Link>
               <Link
-                to="/student/grades"
+                to="/dashboard/student/grades"
                 className="flex items-center py-2 px-4 rounded hover:bg-green-500"
               >
                 <FaAward className="mr-3" /> Grades
               </Link>
               <Link
-                to="/student/feedback"
+                to="/dashboard/student/feedback"
                 className="flex items-center py-2 px-4 rounded hover:bg-green-500"
               >
                 <FaChalkboardTeacher className="mr-3" /> Feedback
               </Link>
               <Link
-                to="/student/growth-metrics"
+                to="/dashboard/student/growth-metrics"
                 className="flex items-center py-2 px-4 rounded hover:bg-green-500"
               >
                 <FaUserGraduate className="mr-3" /> Growth Metrics
               </Link>
+              <Link
+                to="/dashboard/student/resourcecentre"
+                className="flex items-center py-2 px-4 rounded hover:bg-green-500"
+              >
+                <GrResources className="mr-3" /> Resource Center
+              </Link>
             </>
           )}
         </nav>
-
-        {/* Sign Out Link */}
+        {/* Sign Out Button */}
         <div className="mt-auto px-4">
-          <Link
-            to="/logout"
-            className="flex items-center py-2 px-4 rounded hover:bg-red-500"
+          <button
+            onClick={handleSignOut}
+            className="flex items-center py-2 px-4 rounded hover:bg-red-500 w-full"
           >
             <FaSignOutAlt className="mr-3" /> Logout
-          </Link>
+          </button>
         </div>
       </div>
 
@@ -141,8 +170,6 @@ const Sidebar = () => {
       >
         <FaBars size={24} />
       </button>
-
-      
     </div>
   );
 };

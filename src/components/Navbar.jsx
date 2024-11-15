@@ -1,9 +1,9 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
-      <div className="text-green-600 font-bold text-2xl">EduBridge</div>
+      <Link to="/" className="text-green-600 font-bold text-2xl">LearnLink</Link>
       <div className="hidden md:flex space-x-6">
         <a href="#features" className="text-gray-800 hover:text-green-600">
           Features
@@ -45,12 +45,12 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        <Link to="/signUp" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
           Get Started
-        </button>
-        <button className="border border-green-600 text-green-600 px-4 py-2 rounded hover:bg-green-100">
-          Learn More
-        </button>
+        </Link>
+        <Link to="/login" className="border border-green-600 text-green-600 px-4 py-2 rounded hover:bg-green-100">
+          Login
+        </Link>
       </div>
     </nav>
   );

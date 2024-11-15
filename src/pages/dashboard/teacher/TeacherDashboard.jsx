@@ -1,9 +1,10 @@
 import React from "react";
 import TeacherNotificationsList from "../../messageNotification/TeacherNotificationList"; // Import teacher-specific notifications component
 import MessageSender from "../../messageNotification/MessageSender"; // Allows the teacher to send messages to parents
-import PendingTasks from "../teacher/PendingTasks";
-import StudentInsights from "../teacher/StudentInsights";
-import Notifications from "../teacher/Notifications";
+import PendingTasks from "./PendingTasks";
+import StudentInsights from "./StudentInsights";
+import Notifications from "./Notifications";
+import ResourceCenter1 from "./ResourceCenter";
 
 // Sample data for teacher notifications
 const teacherNotifications = [
