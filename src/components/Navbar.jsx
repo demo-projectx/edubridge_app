@@ -36,20 +36,18 @@ const Navbar = () => {
       <div
         className={`${
           isOpen ? "block" : "hidden"
-        } md:flex flex-col md:flex-row md:items-center absolute md:static top-16 left-0 w-full md:w-auto bg-white shadow-md md:shadow-none p-4 md:p-0`}
+        } md:flex flex-col md:flex-row md:items-center absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none p-4 md:p-0`}
       >
         <ul className="flex flex-col md:flex-row md:space-x-6 text-center md:text-left space-y-4 md:space-y-0">
-          <a
-            href="#features"
-            className="text-gray-800 hover:text-green-600 block"
-          >
-            Features
-          </a>
-
+          <li>
+            <a href="#features" className="text-gray-800 hover:text-green-600">
+              Features
+            </a>
+          </li>
           <li>
             <a
               href="#how-it-works"
-              className="text-gray-800 hover:text-green-600 block"
+              className="text-gray-800 hover:text-green-600"
             >
               How It Works
             </a>
@@ -57,24 +55,18 @@ const Navbar = () => {
           <li>
             <a
               href="#testimonials"
-              className="text-gray-800 hover:text-green-600 block"
+              className="text-gray-800 hover:text-green-600"
             >
               Testimonials
             </a>
           </li>
           <li>
-            <a
-              href="#awards"
-              className="text-gray-800 hover:text-green-600 block"
-            >
+            <a href="#awards" className="text-gray-800 hover:text-green-600">
               Awards
             </a>
           </li>
           <li>
-            <a
-              href="#contact"
-              className="text-gray-800 hover:text-green-600 block"
-            >
+            <a href="#contact" className="text-gray-800 hover:text-green-600">
               Contact
             </a>
           </li>
@@ -87,7 +79,7 @@ const Navbar = () => {
             placeholder="Search..."
             className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
           />
-          <button className="absolute right-1 top-1 text-gray-500">
+          <button className="absolute right-2 top-2 text-gray-500">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
