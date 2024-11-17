@@ -17,7 +17,7 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, setUser } = useUser(); // Fetch user role from context
   const navigate = useNavigate(); // Initialize useNavigate
-
+console.log("user in sidebar",user)
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -59,7 +59,7 @@ const Sidebar = () => {
             <FaHome className="mr-3" /> Dashboard
           </Link>
 
-          {user.role === "Parent" && (
+          {user?.role === "Parent" && (
             <>
               <Link
                 to="/dashboard/parent/child-progress"
@@ -88,7 +88,7 @@ const Sidebar = () => {
             </>
           )}
 
-          {user.role === "Teacher" && (
+          {user?.role === "Teacher" && (
             <>
               <Link
                 to="/dashboard/teacher/student-insights"
@@ -117,7 +117,7 @@ const Sidebar = () => {
             </>
           )}
 
-          {user?.role === "Student" && (
+          {user && user?.role === "Student" && (
             <>
               <Link
                 to="/dashboard/student/studentprofile"
