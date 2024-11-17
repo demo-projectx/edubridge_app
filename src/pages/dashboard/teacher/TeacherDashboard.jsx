@@ -9,7 +9,7 @@ const teacherNotifications = [
   {
     message: "Student Talata missed class",
     timestamp: "2024-10-28 10:30 AM",
-    type: "studentAlert",
+    type: "StudentAlert",
   },
   {
     message: "Assignment 3 submission is pending for review",
@@ -17,9 +17,9 @@ const teacherNotifications = [
     type: "taskReminder",
   },
   {
-    message: "New message from Parent of Jane Doe",
+    message: "New message from Parent of Edem",
     timestamp: "2024-10-26 2:15 PM",
-    type: "parentMessage",
+    type: "ParentMessage",
   },
 ];
 

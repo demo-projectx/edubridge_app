@@ -35,7 +35,8 @@ function App() {
     // if there is, put it in state
 
     if (localStorage.getItem("user")) {
-      setUser(localStorage.getItem("user"));
+      console.log(localStorage.getItem("user"));
+      setUser(JSON.parse(localStorage.getItem("user")));
     }
   }, []);
   const router = createBrowserRouter([
