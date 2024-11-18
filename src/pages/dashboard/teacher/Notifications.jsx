@@ -2,182 +2,234 @@ import React, { useState } from "react";
 import {
   Box,
   Typography,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-  IconButton,
-  Chip,
-  Select,
-  MenuItem,
   Grid,
+  Card,
+  CardContent,
+  CardActions,
+  Button,
+  Chip,
   Tooltip,
 } from "@mui/material";
-import { CheckCircle, NotificationsActive, Star } from "@mui/icons-material";
+import {
+  Star,
+  CheckCircle,
+  Email,
+  Feedback,
+  NotificationsActive,
+} from "@mui/icons-material";
 
 const Notifications = () => {
-  const initialNotifications = [
+  const notifications = [
     {
       id: 1,
       title: "New Assignment Submission",
-      message: "A student has submitted an assignment.",
+      message: "A student has submitted an assignment for review.",
       date: "2024-11-12",
+      type: "event",
       important: true,
-      read: false,
     },
     {
       id: 2,
-      title: "Weekly Progress Report Due",
-      message: "Remember to submit weekly progress reports.",
-      date: "2024-11-10",
+      title: "Message from Parent",
+      message:
+        "Parent of John Doe: I would like to discuss his recent performance in class.",
+      date: "2024-11-11",
+      type: "parentMessage",
       important: false,
-      read: false,
     },
     {
       id: 3,
-      title: "School Meeting",
-      message: "Upcoming staff meeting on Friday at 10:00 AM.",
-      date: "2024-11-09",
-      important: true,
-      read: true,
+      title: "Student Feedback Received",
+      message:
+        "Student: I really enjoyed the interactive learning activities in class today!",
+      date: "2024-11-10",
+      type: "feedback",
+      important: false,
     },
     {
       id: 4,
-      title: "Parent-Teacher Conference",
-      message: "Conference scheduled for next week.",
-      date: "2024-11-08",
+      title: "Weekly Progress Report Reminder",
+      message: "Remember to submit your weekly progress reports.",
+      date: "2024-11-09",
+      type: "event",
       important: false,
-      read: true,
+    },
+    {
+      id: 5,
+      title: "School Meeting Reminder",
+      message: "There is an upcoming staff meeting on Friday at 10:00 AM.",
+      date: "2024-11-08",
+      type: "event",
+      important: true,
+    },
+    {
+      id: 6,
+      title: "Parent-Teacher Conference",
+      message: "Conference scheduled for next week. Please prepare reports.",
+      date: "2024-11-07",
+      type: "parentMessage",
+      important: false,
+    },
+    {
+      id: 7,
+      title: "Positive Feedback on Assignment",
+      message: "Student: The recent assignment was very insightful.",
+      date: "2024-11-06",
+      type: "feedback",
+      important: false,
     },
   ];
 
-  const [notifications, setNotifications] = useState(initialNotifications);
-  const [filter, setFilter] = useState("All");
-
-  // Filter notifications
-  const filteredNotifications = notifications.filter((notification) => {
-    if (filter === "All") return true;
-    if (filter === "Unread") return !notification.read;
-    if (filter === "Important") return notification.important;
-    return true;
-  });
-
-  // Mark notification as read
-  const markAsRead = (id) => {
-    setNotifications(
-      notifications.map((notification) =>
-        notification.id === id ? { ...notification, read: true } : notification
-      )
-    );
-  };
-
   return (
-    <Box sx={{ p: 4, backgroundColor: "#f9f9f9", minHeight: "100vh" }}>
-      <Typography
-        variant="h4"
-        align="center"
-        sx={{ color: "#4CAF50", fontWeight: "bold", mb: 2 }}
+    <Box
+      sx={{
+        display: "flex",
+        minHeight: "100vh",
+        p: 3,
+        backgroundColor: "#f9f9f9",
+      }}
+    >
+      {/* Sidebar Spacer */}
+      <Box sx={{ flex: "0 0 50px" }}></Box>
+
+      {/* Main Content */}
+      <Box
+        sx={{
+          flex: 1,
+          maxWidth: "1200px",
+          mx: "auto",
+          p: 4,
+          backgroundColor: "#ffffff",
+          borderRadius: 2,
+          boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+        }}
       >
-        Notifications
-      </Typography>
-      <Typography variant="body1" align="center" gutterBottom>
-        Stay updated with the latest announcements and alerts.
-      </Typography>
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{ color: "#4CAF50", fontWeight: "bold", mb: 2 }}
+        >
+          Notifications
+        </Typography>
+        <Typography variant="body1" align="center" gutterBottom>
+          Explore all important updates, feedback, and messages in an organized
+          way.
+        </Typography>
 
-      {/* Filter Selection */}
-      <Grid container justifyContent="center" sx={{ mt: 2 }}>
-        <Grid item xs={12} sm={6} md={4}>
-          <Typography variant="subtitle1">Filter Notifications:</Typography>
-          <Select
-            fullWidth
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            variant="outlined"
-          >
-            <MenuItem value="All">All</MenuItem>
-            <MenuItem value="Unread">Unread</MenuItem>
-            <MenuItem value="Important">Important</MenuItem>
-          </Select>
+        {/* Notification Grid */}
+        <Grid container spacing={3} sx={{ mt: 4 }}>
+          {/* Render Notifications */}
+          {notifications.map((notification) => (
+            <Grid item xs={12} sm={6} md={4} key={notification.id}>
+              <NotificationCard notification={notification} />
+            </Grid>
+          ))}
         </Grid>
-      </Grid>
-
-      {/* Notification List */}
-      <Box sx={{ mt: 4 }}>
-        <List>
-          {filteredNotifications.length === 0 ? (
-            <Typography
-              variant="h6"
-              align="center"
-              sx={{ color: "#2E7D32", fontWeight: "bold" }}
-            >
-              No notifications found!
-            </Typography>
-          ) : (
-            filteredNotifications.map((notification) => (
-              <ListItem
-                key={notification.id}
-                sx={{
-                  bgcolor: notification.read ? "#E8F5E9" : "#C8E6C9",
-                  borderRadius: 1,
-                  mb: 2,
-                  boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
-                }}
-              >
-                <ListItemText
-                  primary={
-                    <Typography
-                      variant="h6"
-                      sx={{ fontWeight: notification.read ? "normal" : "bold" }}
-                    >
-                      {notification.title}
-                      {notification.important && (
-                        <Tooltip title="Important">
-                          <Star color="error" sx={{ ml: 1, fontSize: 20 }} />
-                        </Tooltip>
-                      )}
-                    </Typography>
-                  }
-                  secondary={
-                    <>
-                      <Typography variant="body2">
-                        {notification.message}
-                      </Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        {notification.date}
-                      </Typography>
-                    </>
-                  }
-                />
-                <ListItemSecondaryAction>
-                  {!notification.read && (
-                    <Tooltip title="Mark as Read">
-                      <IconButton
-                        edge="end"
-                        color="success"
-                        onClick={() => markAsRead(notification.id)}
-                      >
-                        <CheckCircle />
-                      </IconButton>
-                    </Tooltip>
-                  )}
-                  {notification.important && (
-                    <Tooltip title="Important Notification">
-                      <Chip
-                        icon={<NotificationsActive />}
-                        label="Important"
-                        color="secondary"
-                        sx={{ ml: 1 }}
-                      />
-                    </Tooltip>
-                  )}
-                </ListItemSecondaryAction>
-              </ListItem>
-            ))
-          )}
-        </List>
       </Box>
     </Box>
   );
+};
+
+const NotificationCard = ({ notification }) => {
+  return (
+    <Card
+      sx={{
+        bgcolor: notification.important ? "#FFF3E0" : "#F1F8E9",
+        borderRadius: 2,
+        boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+        "&:hover": {
+          boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
+        },
+      }}
+    >
+      <CardContent>
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: "bold",
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          {notification.title}
+          {notification.important && (
+            <Tooltip title="Important">
+              <Star color="error" />
+            </Tooltip>
+          )}
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{ mt: 1, mb: 2, color: "text.secondary" }}
+        >
+          {notification.message}
+        </Typography>
+        <Chip
+          label={getChipLabel(notification.type)}
+          color={getChipColor(notification.type)}
+          icon={getChipIcon(notification.type)}
+          sx={{ mt: 1 }}
+        />
+        <Typography
+          variant="caption"
+          display="block"
+          sx={{ mt: 1, color: "text.secondary" }}
+        >
+          {notification.date}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button
+          size="small"
+          startIcon={<CheckCircle />}
+          sx={{ color: "#4CAF50", fontWeight: "bold" }}
+        >
+          Mark as Read
+        </Button>
+      </CardActions>
+    </Card>
+  );
+};
+
+// Helper functions for Chips
+const getChipLabel = (type) => {
+  switch (type) {
+    case "event":
+      return "Event";
+    case "feedback":
+      return "Feedback";
+    case "parentMessage":
+      return "Parent Message";
+    default:
+      return "General";
+  }
+};
+
+const getChipColor = (type) => {
+  switch (type) {
+    case "event":
+      return "primary";
+    case "feedback":
+      return "secondary";
+    case "parentMessage":
+      return "default";
+    default:
+      return "default";
+  }
+};
+
+const getChipIcon = (type) => {
+  switch (type) {
+    case "event":
+      return <NotificationsActive />;
+    case "feedback":
+      return <Feedback />;
+    case "parentMessage":
+      return <Email />;
+    default:
+      return <NotificationsActive />;
+  }
 };
 
 export default Notifications;

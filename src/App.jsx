@@ -88,10 +88,7 @@ function App() {
           path: "child-progress",
           element: <ChildProgress />,
         },
-        {
-          path: "attendance-alerts",
-          element: <AttendanceAlerts />,
-        },
+        
         {
           path: "messages",
           element: <Messages />,

@@ -2,27 +2,35 @@ import React from "react";
 import GradesChart from "./GradesChart";
 import AttendanceSummary from "./AttendanceSummary";
 import BehaviorFeedback from "./BehaviourFeedback";
-// import pic from "../studentProfile/images/2.jpg"
 
 const StudentProfile = ({ student }) => {
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md max-w-lg mx-auto mt-8">
-      <div className="flex items-center mb-6">
+    <div className="p-8 bg-white rounded-lg shadow-md max-w-4xl mx-auto mt-8">
+      {/* Profile Picture and Basic Info */}
+      <div className="text-center mb-8">
         <img
           src={student?.photo}
           alt={student?.name}
-          className="w-20 h-20 rounded-full shadow-md"
+          className="w-24 h-24 rounded-full shadow-md mx-auto"
         />
-        <div className="ml-4">
-          <h2 className="text-2xl font-semibold text-gray-800">
-            {student?.name}
-          </h2>
-          <p className="text-sm text-gray-500">ID: {student?.id}</p>
+        <h2 className="text-2xl font-semibold text-gray-800 mt-4">
+          {student?.name}
+        </h2>
+        <p className="text-sm text-gray-500">ID: {student?.id}</p>
+      </div>
+
+      {/* Grid Layout for Components */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
+          <GradesChart grades={student?.grades} />
+        </div>
+        <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
+          <AttendanceSummary attendance={student?.attendance} />
+        </div>
+        <div className="bg-gray-50 p-6 rounded-lg shadow-sm md:col-span-2">
+          <BehaviorFeedback feedback={student?.feedback} />
         </div>
       </div>
-      <GradesChart grades={student?.grades} />
-      <AttendanceSummary attendance={student?.attendance} />
-      <BehaviorFeedback feedback={student?.feedback} />
     </div>
   );
 };

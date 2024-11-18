@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { GrResources } from "react-icons/gr";
+import { AiFillMessage } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom"; // Correct import
 import { useUser } from "./userContext";
 
@@ -17,7 +18,7 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, setUser } = useUser(); // Fetch user role from context
   const navigate = useNavigate(); // Initialize useNavigate
-console.log("user in sidebar",user)
+  console.log("user in sidebar", user);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -74,10 +75,10 @@ console.log("user in sidebar",user)
                 <FaBell className="mr-3" /> Behavioral Issues
               </Link>
               <Link
-                to="/dashboard/parent/attendance-alerts"
+                to="/dashboard/parent/messages"
                 className="flex items-center py-2 px-4 rounded hover:bg-green-500"
               >
-                <FaAward className="mr-3" /> Attendance Alerts
+                <AiFillMessage className="mr-3" /> Messages
               </Link>
               <Link
                 to="/dashboard/parent/resourcecentre"
