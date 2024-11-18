@@ -11,15 +11,11 @@ const Dashboard = () => {
   const { user } = useUser();
 
   return (
-  <div>
-    <Navbar/>
     <div className="p-6">
       {/* Conditionally render based on user role */}
       {user?.role === "Parent" && <ParentDashboard />}
       {user?.role === "Teacher" && <TeacherDashboard />}
       {user?.role === "Student" && <StudentDashboard />}
-    </div>
-    <Footer/>
     </div>
   );
 };
