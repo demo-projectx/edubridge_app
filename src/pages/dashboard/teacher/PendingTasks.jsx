@@ -20,23 +20,23 @@ import {
 import { CheckCircle, Info, Alarm } from "@mui/icons-material";
 import { format, isToday, isThisWeek, isThisMonth, parseISO } from "date-fns";
 
-const Sidebar = () => (
-  <Box
-    sx={{
-      width: 240,
-      flexShrink: 0,
-      backgroundColor: "#4CAF50",
-      color: "white",
-      p: 2,
-      minHeight: "100vh",
-    }}
-  >
-    <Typography variant="h5" gutterBottom>
-      Dashboard
-    </Typography>
-    <Typography variant="body2">Links or Menu</Typography>
-  </Box>
-);
+//  
+//   <Box
+//     sx={{
+//       width: 240,
+//       flexShrink: 0,
+//       backgroundColor: "#4CAF50",
+//       color: "white",
+//       p: 2,
+//       minHeight: "100vh",
+//     }}
+//   >
+//     <Typography variant="h5" gutterBottom>
+//       Dashboard
+//     </Typography>
+//     <Typography variant="body2">Links or Menu</Typography>
+//   </Box>
+// );
 
 const PendingTasks = () => {
   const initialTasks = [
@@ -273,7 +273,7 @@ const PendingTasks = () => {
 
 const App = () => (
   <Box sx={{ display: "flex" }}>
-    <Sidebar />
+    {/* <Sidebar /> */}
     <PendingTasks />
   </Box>
 );
